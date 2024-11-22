@@ -1,6 +1,15 @@
 #ifndef DEFINE_SECTION
 #define DEFINE_SECTION
 
+#include "esp_camera.h"
+#include "Arduino.h"
+#include "FS.h"                   // Для работы с файловой системой SD Card
+#include "SD_MMC.h"               // Работа с MMC
+#include "soc/soc.h"              // Избавляемся с проблемами при отключении
+#include "soc/rtc_cntl_reg.h"     // Избавляемся с проблемами при отключении
+#include "driver/rtc_io.h"
+#include <EEPROM.h>   
+
 
 #define EEPROM_SIZE 1             // Количество байт 1 позволяет сохранить до 256 фотографий
 

@@ -1,46 +1,16 @@
-// GPIO0 должен быть подключен к GND для загрузки кода
 
-// Подключение необходимых библиотек
-#include "esp_camera.h"
-#include "Arduino.h"
-#include "FS.h"                   // Для работы с файловой системой SD Card
-#include "SD_MMC.h"               // Работа с MMC
-#include "soc/soc.h"              // Избавляемся с проблемами при отключении
-#include "soc/rtc_cntl_reg.h"     // Избавляемся с проблемами при отключении
-#include "driver/rtc_io.h"
-#include <EEPROM.h>               // Библиотека для работы с EEPROM
-#include "define.h"
-
-// контакты для модуля камеры AI-THINKER
+#include "camera.h"
 
 
-int pictureNumber = 0;            // Переменная для хранения номера фотографии 
 
+
+int pictureNumber = 0;
 void setup() {
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
  
   Serial.begin(115200);
  // Конфигурациия камеры   
-  camera_config_t config;
-  config.ledc_channel = LEDC_CHANNEL_0;
-  config.ledc_timer = LEDC_TIMER_0;
-  config.pin_d0 = Y2_GPIO_NUM;
-  config.pin_d1 = Y3_GPIO_NUM;
-  config.pin_d2 = Y4_GPIO_NUM;
-  config.pin_d3 = Y5_GPIO_NUM;
-  config.pin_d4 = Y6_GPIO_NUM;
-  config.pin_d5 = Y7_GPIO_NUM;
-  config.pin_d6 = Y8_GPIO_NUM;
-  config.pin_d7 = Y9_GPIO_NUM;
-  config.pin_xclk = XCLK_GPIO_NUM;
-  config.pin_pclk = PCLK_GPIO_NUM;
-  config.pin_vsync = VSYNC_GPIO_NUM;
-  config.pin_href = HREF_GPIO_NUM;
-  config.pin_sscb_sda = SIOD_GPIO_NUM;
-  config.pin_sscb_scl = SIOC_GPIO_NUM;
-  config.pin_pwdn = PWDN_GPIO_NUM;
-  config.pin_reset = RESET_GPIO_NUM;
-  config.xclk_freq_hz = 20000000;
+  camera_config();
     /*
   Формат изображений может быть одним из следующих вариантов:  
     YUV422
