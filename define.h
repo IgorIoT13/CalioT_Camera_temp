@@ -31,5 +31,7 @@
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-
+void initializeEEPROM();
+    EEPROM.begin(EEPROM_SIZE);
+    pictureNumber = EEPROM.read(0) + 1;
 #endif
