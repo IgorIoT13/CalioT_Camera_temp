@@ -64,7 +64,7 @@ void setup() {
   
   millis(2000);
   Serial.println("Модуль впадает в спячку до следующего нажатия кнопки");
-  delay(2000);
+  millis(2000);
   esp_deep_sleep_start();
 }
 
